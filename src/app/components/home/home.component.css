@@ -1,0 +1,12 @@
+th[mat-header-cell] {
+  text-align: center;
+}
+.mat-grid-tile-header {
+  text-align: center;
+}
+mat-card {
+  margin: 0 1rem;
+}
+mat-form-field {
+  width: 100%;
+}

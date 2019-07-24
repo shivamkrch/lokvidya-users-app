@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+  <a style="letter-spacing: 1px;">{{ title }}!</a>
+  <div style="margin-left: auto">
+    <button
+      mat-button
+      style="margin-left: 2vw"
+      *ngIf="usersService.loggedIn()"
+      (click)="logout()"
+    >
+      Logout
+    </button>
+  </div>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

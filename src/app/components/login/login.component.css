@@ -1,0 +1,18 @@
+.login {
+  padding: 1.8rem 4rem;
+  text-align: center;
+}
+
+.login > * {
+  width: 60%;
+}
+
+@media (max-width: 576px) {
+  .login {
+    padding: 1.5rem;
+  }
+
+  .login > * {
+    width: 100%;
+  }
+}

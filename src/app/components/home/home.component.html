@@ -1,0 +1,114 @@
+<mat-grid-list
+  cols="2"
+  rowHeight="100%"
+  style="text-align: center; background-color:azure; height: 100%"
+>
+  <mat-grid-tile style="overflow: auto">
+    <mat-grid-tile-header><h1>Users List</h1></mat-grid-tile-header>
+    <table
+      mat-table
+      [dataSource]="usersService.usersList"
+      class="mat-elevation-z8"
+      style="margin: 1rem"
+    >
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let user">{{ user.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef>Username</th>
+        <td mat-cell *matCellDef="let user">{{ user.username }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+      </ng-container>
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>Edit</th>
+        <td mat-cell *matCellDef="let user" (click)="select(user.id)">
+          <button mat-icon-button color="accent">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card *ngIf="selected; else show">
+      <mat-card-header>
+        <mat-card-title>Edit or Delete User</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form id="editUserForm" (submit)="updateUser()"></form>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="Name"
+            [(ngModel)]="selected.name"
+            required
+            form="editUserForm"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="Username"
+            [(ngModel)]="selected.username"
+            required
+            form="editUserForm"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            type="email"
+            matInput
+            placeholder="Email"
+            [(ngModel)]="selected.email"
+            required
+            form="editUserForm"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            type="url"
+            matInput
+            placeholder="Website"
+            [(ngModel)]="selected.website"
+            form="editUserForm"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            placeholder="company"
+            [(ngModel)]="selected.company"
+            form="editUserForm"
+          />
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="warn" (click)="deleteUser(selected.id)">
+          <mat-icon>delete</mat-icon> DELETE
+        </button>
+        <button mat-button color="primary" type="submit" form="editUserForm">
+          <mat-icon>file_upload</mat-icon> UPDATE
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    <ng-template #show>
+      <h2>
+        Click in the <mat-icon style="margin: 0 0rem">edit</mat-icon> icon in
+        the table to edit or delete a user.
+      </h2>
+    </ng-template>
+  </mat-grid-tile>
+</mat-grid-list>
