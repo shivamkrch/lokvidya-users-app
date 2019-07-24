@@ -16,4 +16,8 @@ export class AppComponent {
     this.usersService.logout();
     this.router.navigateByUrl("login");
   }
+
+  loggedIn() {
+    return this.usersService.loggedIn();
+  }
 }

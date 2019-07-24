@@ -4,7 +4,7 @@
     <button
       mat-button
       style="margin-left: 2vw"
-      *ngIf="usersService.loggedIn()"
+      *ngIf="loggedIn()"
       (click)="logout()"
     >
       Logout

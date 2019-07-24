@@ -9,6 +9,7 @@ import { UsersService } from "src/app/services/users.service";
 export class HomeComponent implements OnInit {
   displayedColumns: string[] = ["name", "username", "email", "edit"];
   selected = null;
+  usersList = this.usersService.usersList;
 
   constructor(private usersService: UsersService) {}
 
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit {
   deleteUser(id) {
     this.usersService.deleteUser(id);
     this.selected = null;
+    this.usersList = this.usersService.usersList;
   }
 
   updateUser() {
